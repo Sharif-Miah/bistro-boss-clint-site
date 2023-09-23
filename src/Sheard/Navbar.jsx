@@ -12,8 +12,7 @@ const Navbar = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar fixed z-10 max-w-7xl bg-opacity-30 text-white bg-black">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -54,7 +53,7 @@ const Navbar = () => {
             <img className="w-10 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
         </div>
       </div>
-    </div>
+    
   );
 };
 

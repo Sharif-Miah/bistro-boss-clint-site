@@ -1,8 +1,11 @@
+import Carosel from "../Carosel/Carosel";
+import Category from "../Category/Category";
 
 const Home = () => {
     return (
         <div>
-            <h1>This is Home Section</h1>
+            <Carosel/>
+            <Category/>
         </div>
     );
 };
