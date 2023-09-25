@@ -1,3 +1,4 @@
+import BistroDitails from "../BistroDitails/BistroDitails";
 import Carosel from "../Carosel/Carosel";
 import Category from "../Category/Category";
 
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Carosel/>
             <Category/>
+            <BistroDitails/>
         </div>
     );
 };
