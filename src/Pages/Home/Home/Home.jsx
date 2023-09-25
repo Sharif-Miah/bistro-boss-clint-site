@@ -1,6 +1,8 @@
 import BistroDitails from "../BistroDitails/BistroDitails";
 import Carosel from "../Carosel/Carosel";
 import Category from "../Category/Category";
+import MenuItems from "../MenuItems/MenuItems";
+import ManuItems from "../MenuItems/MenuItems";
 
 const Home = () => {
     return (
@@ -8,6 +10,7 @@ const Home = () => {
             <Carosel/>
             <Category/>
             <BistroDitails/>
+            <MenuItems/>
         </div>
     );
 };
