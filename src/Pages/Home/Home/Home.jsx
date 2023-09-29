@@ -4,6 +4,7 @@ import Category from "../Category/Category";
 import ChifRecommend from "../ChifRecommend/ChifRecommend";
 import MenuItems from "../MenuItems/MenuItems";
 import ManuItems from "../MenuItems/MenuItems";
+import OurMenu from "../OurMenu/OurMenu";
 import TelephoneUs from "../TelephoneUs/TelephoneUs";
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <MenuItems/>
             <TelephoneUs/>
             <ChifRecommend/>
+            <OurMenu/>
         </div>
     );
 };
