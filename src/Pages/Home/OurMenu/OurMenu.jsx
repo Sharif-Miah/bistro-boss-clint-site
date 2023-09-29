@@ -4,7 +4,7 @@ import TitleSheard from '../../../Component/TitleSheard';
 
 const OurMenu = () => {
   return (
-    <section className='mb-16'>
+    <section className='mb-16 '>
         <TitleSheard subHeading="---Check it out---" heading="FROM OUR MENU"/>
         <div
       className="hero h-[700px] bg-img "
@@ -15,7 +15,7 @@ const OurMenu = () => {
       <div className=" grid grid-col-1 md:grid-cols-2 gap-4 text-center text-neutral-content">
 
     <div>
-        <img className='w-[500px] ml-4' src={img1} alt="" />
+        <img className='w-[500px] ml-4 ' src={img1} alt="" />
     </div>
 
         <div className="max-w-md ml-8">

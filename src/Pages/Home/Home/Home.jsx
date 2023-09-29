@@ -6,6 +6,7 @@ import MenuItems from "../MenuItems/MenuItems";
 import ManuItems from "../MenuItems/MenuItems";
 import OurMenu from "../OurMenu/OurMenu";
 import TelephoneUs from "../TelephoneUs/TelephoneUs";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <TelephoneUs/>
             <ChifRecommend/>
             <OurMenu/>
+            <Testimonials/>
         </div>
     );
 };
