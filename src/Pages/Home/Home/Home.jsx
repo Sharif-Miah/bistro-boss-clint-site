@@ -7,20 +7,24 @@ import ManuItems from "../MenuItems/MenuItems";
 import OurMenu from "../OurMenu/OurMenu";
 import TelephoneUs from "../TelephoneUs/TelephoneUs";
 import Testimonials from "../Testimonials/Testimonials";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
-    return (
-        <div>
-            <Carosel/>
-            <Category/>
-            <BistroDitails/>
-            <MenuItems/>
-            <TelephoneUs/>
-            <ChifRecommend/>
-            <OurMenu/>
-            <Testimonials/>
-        </div>
-    );
+  return (
+    <div>
+      <Helmet>
+        <title>Bistro Boss || Home</title>
+      </Helmet>
+      <Carosel />
+      <Category />
+      <BistroDitails />
+      <MenuItems />
+      <TelephoneUs />
+      <ChifRecommend />
+      <OurMenu />
+      <Testimonials />
+    </div>
+  );
 };
 
 export default Home;
