@@ -4,10 +4,9 @@ import SingleMenu from './SingleMenu';
 import UseMenu from '../../../Hooks/UseMenu';
 
 const MenuItems = () => {
-    const [menu] = UseMenu()
+    const [menu] = UseMenu();
+    console.log(menu);
     const popular = menu.filter(item => item.category === "popular")
-
-    
 
     return (
         <section className='mb-16'>
@@ -21,7 +20,6 @@ const MenuItems = () => {
                     popular.map(item => <SingleMenu
                     key={item._id}
                     item={item}
-
                     />)
                 }
             </div>
