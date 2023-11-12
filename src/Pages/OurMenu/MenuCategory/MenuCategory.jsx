@@ -3,7 +3,7 @@ import SingleMenu from "../../Home/MenuItems/SingleMenu";
 import Cover from "../Cover/Cover";
 
 const MenuCategory = ({ items, img, title }) => {
-  console.log(items);
+  
   return (
     <div>
       <div className="my-20">{title && <Cover img={img} title="OUR MENU" />}</div>
