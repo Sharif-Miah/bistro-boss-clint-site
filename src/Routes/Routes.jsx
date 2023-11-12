@@ -31,7 +31,7 @@ import OurShop from "../Pages/OurShop/OurShop";
             element: <OurMenu/>
         },
         {
-            path: '/ourshop',
+            path: '/ourshop/:category',
             element: <OurShop/>
         }
       ]

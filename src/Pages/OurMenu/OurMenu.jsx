@@ -11,6 +11,7 @@ import pizzaImg from "../../assets/menu/pizza-bg.jpg"
 import saladImg from "../../assets/menu/salad-bg.jpg"
 import soupImg from "../../assets/menu/soup-bg.jpg"
 const OurMenu = () => {
+
   const [menu] = UseMenu()
   const dessert = menu.filter(item => item.category === "dessert")
   const pizza = menu.filter(item => item.category === "pizza")
