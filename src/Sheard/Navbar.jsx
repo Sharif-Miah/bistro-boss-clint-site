@@ -4,10 +4,10 @@ const Navbar = () => {
   const MenuItem = (
     <>
       <Link className="ml-5 font-semibold">HOME</Link>
-      <Link to='/contactus' className="ml-5 font-semibold">CONTACT US</Link>
-      <Link to='/deshbord' className="ml-5 font-semibold">DASHBOARD</Link>
-      <Link to='/ourmenu' className="ml-5 font-semibold">Our Menu</Link>
-      <Link to='/ourshop' className="ml-5 font-semibold">Our Shop</Link>
+      <Link to='/Contactus' className="ml-5 font-semibold">CONTACT US</Link>
+      <Link to='/Deshbord' className="ml-5 font-semibold">DASHBOARD</Link>
+      <Link to='/Ourmenu' className="ml-5 font-semibold">Our Menu</Link>
+      <Link to='/Ourshop/salad' className="ml-5 font-semibold">Our Shop</Link>
     </>
   );
 

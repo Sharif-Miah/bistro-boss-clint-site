@@ -21,15 +21,15 @@ const OurMenu = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss || Menu</title>
+        <title>Bistro Boss || Our Menu</title>
       </Helmet>
       <Cover img={CoverImg} title="OUR MENU"/>
       <TitleSheard subHeading="Don't miss" heading="TODAY'S OFFER"/>
       <MenuCategory items={offered}/>
-      <MenuCategory items={dessert} img={dessart} title="Dessert"/>
-      <MenuCategory items={pizza} img={pizzaImg} title="Pizza"/>
-      <MenuCategory items={salad} img={saladImg} title="Salad"/>
-      <MenuCategory items={soup} img={soupImg} title="Soup"/>
+      <MenuCategory items={dessert} img={dessart} title="dessert"/>
+      <MenuCategory items={pizza} img={pizzaImg} title="pizza"/>
+      <MenuCategory items={salad} img={saladImg} title="salad"/>
+      <MenuCategory items={soup} img={soupImg} title="soup"/>
 
     </div>
   );

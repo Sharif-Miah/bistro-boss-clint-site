@@ -14,8 +14,6 @@ const OurShop = () => {
   const initialIndex = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu] = UseMenu();
-
-  console.log(category);
   const dessert = menu.filter((item) => item.category === "dessert");
   const pizza = menu.filter((item) => item.category === "pizza");
   const salad = menu.filter((item) => item.category === "salad");
@@ -31,11 +29,11 @@ const OurShop = () => {
 
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList>
-          <Tab>salad</Tab>
-          <Tab>pizza</Tab>
-          <Tab>soup</Tab>
-          <Tab>dessert</Tab>
-          <Tab>drinks</Tab>
+          <Tab>Salad</Tab>
+          <Tab>Pizza</Tab>
+          <Tab>Soup</Tab>
+          <Tab>Dessert</Tab>
+          <Tab>Drinks</Tab>
         </TabList>
         <TabPanel>
           <OrderTap item={salad} />
