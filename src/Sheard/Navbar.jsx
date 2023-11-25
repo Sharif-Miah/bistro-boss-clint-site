@@ -48,7 +48,8 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
             <div className="mr-5">
-                <Link className="font-semibold">SIGN IN</Link>
+                <Link to="/login" className="font-semibold mr-4">LOGIN</Link>
+                <Link to="/signin" className="font-semibold">SIGN IN</Link>
             </div>
             <img className="w-10 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
         </div>
