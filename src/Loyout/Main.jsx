@@ -4,8 +4,8 @@ import Footer from "../Sheard/Footer";
 
 const Main = () => {
     const location = useLocation();
-    const noHeaderFoter = location.pathname.includes("login")
-    const noHeaderFotersignIn = location.pathname.includes("signin")
+    const noHeaderFoter = location.pathname.includes("login") || location.pathname.includes("signin");
+    
     return (
         <div>
             { noHeaderFoter  || <Navbar/>}
