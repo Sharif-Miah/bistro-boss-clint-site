@@ -11,11 +11,12 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
-  const onSubmit  = (data) => {
-    console.log(data)
-  }
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="my-24">
@@ -37,7 +38,9 @@ const SignIn = () => {
                   className="input input-bordered input-md w-full max-w-xs mt-3"
                 />
                 <p>
-                {errors.name && <span className="text-red-600">Name field is required</span>}
+                  {errors.name && (
+                    <span className="text-red-600">Name field is required</span>
+                  )}
                 </p>
               </div>
               <div className="">
@@ -50,7 +53,11 @@ const SignIn = () => {
                   className="input input-bordered input-md w-full max-w-xs mt-3"
                 />
                 <p>
-                {errors.email && <span className="text-red-600">Email field is required</span>}
+                  {errors.email && (
+                    <span className="text-red-600">
+                      Email field is required
+                    </span>
+                  )}
                 </p>
               </div>
               <div className="">
@@ -59,17 +66,45 @@ const SignIn = () => {
                 <input
                   type="password"
                   name="password"
-                  {...register("password", { required: true, minLength: 6, maxLength: 20  })}
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 20,
+                    pattern: /(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}/,
+                  })}
                   placeholder="Type password"
                   className="input input-bordered input-md w-full max-w-xs mt-3"
                 />
-                 <p>
-                {errors.password && <span className="text-red-600">Password field is required</span>}
+                <p>
+                  {errors.password?.type === "required" && (
+                    <span className="text-red-600">
+                      Password field is required
+                    </span>
+                  )}
+                </p>
+                <p>
+                  {errors.password?.type === "minLength" && (
+                    <span className="text-red-600">
+                      Password must be 6 characters
+                    </span>
+                  )}
+                </p>
+                <p>
+                  {errors.password?.type === "maxLength" && (
+                    <span className="text-red-600">
+                      Password must be 20 characters
+                    </span>
+                  )}
+                </p>
+                <p>
+                  {errors.password?.type === "pattern" && (
+                    <span className="text-red-600">
+                      Password must be one lowercase and one uppercase and one special characters
+                    </span>
+                  )}
                 </p>
               </div>
-              <button className="btn bg-red-500 hover:bg-red-500 text-white input-bordered  w-full max-w-xs mt-3">
-                Register
-              </button>
+              <input  className="btn bg-red-500 hover:bg-red-500 text-white input-bordered  w-full max-w-xs mt-3" type="submit" value="Register" />
             </div>
           </form>
           <div className="ml-6 lg:ml-24">
