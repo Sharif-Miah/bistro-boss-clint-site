@@ -119,7 +119,7 @@ const Login = () => {
                   disabled={disable}
                   className="btn bg-orange-300 hover:bg-orange-400 text-white input-bordered  w-full max-w-xs mt-3"
                 >
-                  Register
+                  Login
                 </button>
               </div>
             </form>
@@ -133,7 +133,7 @@ const Login = () => {
             </div>
             <div>
               <p className="ml-6 lg:ml-12 mt-0 lg:mt-5 cursor-pointer">
-                Already have an account?{" "}
+                Already have an account?
                 <Link
                   to="/signin"
                   className="text-red-500 ml-6 lg:ml-0 font-bold"

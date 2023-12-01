@@ -125,9 +125,9 @@ const SignIn = () => {
                   </p>
                 </div>
                 <input
-                  className="btn bg-red-500 hover:bg-red-500 text-white input-bordered  w-full max-w-xs mt-3"
+                  className="btn bg-orange-300 hover:bg-orange-400 text-white input-bordered  w-full max-w-xs mt-3"
                   type="submit"
-                  value="Register"
+                  value="Sign In"
                 />
               </div>
             </form>
