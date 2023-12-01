@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import registerImg from "../../assets/others/authentication1.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TfiLinkedin } from "react-icons/tfi";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -14,8 +15,7 @@ import { AuthContext } from "../../Provider/AuthPorvider";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
-  const captchaRef = useRef(null);
-
+  
   const [disable, setDisable] = useState(true);
 
   useEffect(() => {
@@ -35,11 +35,29 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+
+      Swal.fire({
+        title: "Customer Login Successfully.",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
     });
   };
 
-  const handleValidCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisable(false);
     } else {
@@ -99,7 +117,7 @@ const Login = () => {
                   </label>
                   <br />
                   <input
-                    ref={captchaRef}
+                    onBlur={handleValidCaptcha}
                     type="text"
                     name="captcha"
                     placeholder="Type The Text Captcha"
@@ -107,14 +125,7 @@ const Login = () => {
                     required
                   />
                 </div>
-                <div>
-                  <button
-                    onClick={handleValidCaptcha}
-                    className="btn btn-xs w-80 mt-4 bg-orange-300 hover:bg-orange-400 font-bold uppercase"
-                  >
-                    Validet
-                  </button>
-                </div>
+                
                 <button
                   disabled={disable}
                   className="btn bg-orange-300 hover:bg-orange-400 text-white input-bordered  w-full max-w-xs mt-3"

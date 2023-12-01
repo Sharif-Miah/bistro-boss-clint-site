@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthPorvider";
 import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2'
 
 const SignIn = () => {
 
@@ -26,6 +27,25 @@ const SignIn = () => {
     .then((result) => {
       const user = result.user;
       console.log(user);
+
+      Swal.fire({
+        title: "Customer Sign In Successfully.",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
+
     });
     
   };
