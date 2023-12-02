@@ -3,7 +3,7 @@ import registerImg from "../../assets/others/authentication1.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TfiLinkedin } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthPorvider";
@@ -11,6 +11,10 @@ import { Helmet } from "react-helmet-async";
 import Swal from 'sweetalert2'
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.form?.pathname || "/";
 
   const {
     register,
@@ -29,7 +33,7 @@ const SignIn = () => {
       console.log(user);
 
       Swal.fire({
-        title: "Customer Sign In Successfully.",
+        title: "User Sign In Successfull.",
         showClass: {
           popup: `
             animate__animated
@@ -45,6 +49,8 @@ const SignIn = () => {
           `
         }
       });
+
+      navigate(from, {replace: true})
 
     });
     

@@ -9,6 +9,8 @@ import OurMenu from "../Pages/OurMenu/OurMenu";
 import OurShop from "../Pages/OurShop/OurShop";
 import SignIn from "../Pages/SignIn/SignIn";
 import Login from "../Pages/Login/Login";
+import Secret from "../Sheard/Secret/Secret";
+import PrivetRoutes from "./PrivetRoutes";
 
 
   export const router = createBrowserRouter([
@@ -35,6 +37,10 @@ import Login from "../Pages/Login/Login";
         {
             path: '/ourshop/:category',
             element: <OurShop/>
+        },
+        {
+            path: '/secret',
+            element: <PrivetRoutes><Secret/></PrivetRoutes>
         },
         {
             path: '/login',

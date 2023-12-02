@@ -3,7 +3,7 @@ import registerImg from "../../assets/others/authentication1.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TfiLinkedin } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import {
   loadCaptchaEnginge,
@@ -17,6 +17,10 @@ import { Helmet } from "react-helmet-async";
 const Login = () => {
   
   const [disable, setDisable] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -37,7 +41,7 @@ const Login = () => {
       console.log(user);
 
       Swal.fire({
-        title: "Customer Login Successfully.",
+        title: "User Login Successfull.",
         showClass: {
           popup: `
             animate__animated
@@ -53,6 +57,7 @@ const Login = () => {
           `
         }
       });
+      navigate(from, {replace: true})
     });
   };
 

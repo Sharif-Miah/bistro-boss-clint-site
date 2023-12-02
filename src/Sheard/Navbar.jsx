@@ -32,6 +32,13 @@ const Navbar = () => {
           Our Shop
         </Link>
       </li>
+      {user? <>
+        <li>
+        <Link to="/secret" className="ml-5 font-semibold">
+        secret
+        </Link>
+      </li>
+      </> : <> </> }
       
     </>
   );
