@@ -90,10 +90,12 @@ const Navbar = () => {
         <div className="mr-5">
         {
           user? <>
+          
           <li className="list-none">
           <button onClick={handleLogOut} className="font-semibold mr-4 text-xm">
             LogOut
           </button>
+          
         </li>
           </> :
         <>
@@ -105,10 +107,19 @@ const Navbar = () => {
         </>
       }
         </div>
+        {user? <>
+          <img
+          className="w-10 rounded-full"
+          src={user?.photoURL}
+          title={user?.displayName}
+        />
+        
+        </> : <>
         <img
           className="w-10 rounded-full"
-          src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rjtPJdLy1SOek-sBOvjP5S0-j6V69Ky6MA&usqp=CAU"
         />
+        </>}
       </div>
     </div>
   );

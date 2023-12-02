@@ -23,7 +23,7 @@ const SignIn = () => {
     reset,
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -32,25 +32,34 @@ const SignIn = () => {
       const user = result.user;
       console.log(user);
 
-      Swal.fire({
-        title: "User Sign In Successfull.",
-        showClass: {
-          popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `
-        },
-        hideClass: {
-          popup: `
-            animate__animated
-            animate__fadeOutDown
-            animate__faster
-          `
-        }
-      });
+      updateUserProfile(data.name, data.photoURL)
+      .then(() => {
+        console.log("User Profile User Updated")
+        reset();
+        Swal.fire({
+          title: "User Signin Successfull.",
+          showClass: {
+            popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `
+          },
+          hideClass: {
+            popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `
+          }
+        });
+        navigate(from, {replace: true})
+      })
+      .catch(error => console.log(error))
 
-      navigate(from, {replace: true})
+      
+
+      
 
     });
     
@@ -71,7 +80,7 @@ const SignIn = () => {
             <h2 className="text-3xl font-bold ml-9 lg:ml-16 mb-7">Register</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <div className="">
+                <div>
                   <label className="font-semibold ml-3">Name</label> <br />
                   <input
                     type="text"
@@ -88,7 +97,27 @@ const SignIn = () => {
                     )}
                   </p>
                 </div>
-                <div className="">
+
+                <div>
+                  <label className="font-semibold ml-3">Photo URL</label> <br />
+                  <input
+                    type="text"
+                    
+                    {...register("photoURL", { required: true })}
+                    placeholder="Photo URL"
+                    className="input input-bordered input-md w-full max-w-xs mt-3"
+                  />
+                  <p>
+                    {errors.photoURL && (
+                      <span className="text-red-600">
+                        Photo URL field is required
+                      </span>
+                    )}
+                  </p>
+                </div>
+
+
+                <div>
                   <label className="font-semibold ml-3">Email</label> <br />
                   <input
                     type="email"
