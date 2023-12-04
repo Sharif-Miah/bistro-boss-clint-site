@@ -2,6 +2,8 @@ import React from "react";
 
 const SingleMenu = ({ item }) => {
   const { name, image, price, recipe } = item;
+
+  
   return (
     <div className="flex ">
       <img style={{borderRadius: '0 200px 200px 200px'}} className="w-[100px]" src={image} alt="" />

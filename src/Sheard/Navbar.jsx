@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthPorvider";
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
-
-
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const MenuItem = (
     <>
@@ -32,22 +31,25 @@ const Navbar = () => {
           Our Shop
         </Link>
       </li>
-      {user? <>
-        <li>
-        <Link to="/secret" className="ml-5 font-semibold">
-        secret
-        </Link>
-      </li>
-      </> : <> </> }
-      
+      {user ? (
+        <>
+          <li>
+            <Link to="/secret" className="ml-5 font-semibold">
+              secret
+            </Link>
+          </li>
+        </>
+      ) : (
+        <> </>
+      )}
     </>
   );
 
   const handleLogOut = () => {
     logOut()
-    .then(()=>{})
-    .catch(error => console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="navbar fixed z-10 max-w-7xl bg-opacity-30 text-white bg-black">
@@ -88,38 +90,32 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="mr-5">
-        {
-          user? <>
-          
-          <li className="list-none">
-          <button onClick={handleLogOut} className="font-semibold mr-4 text-xm">
-            LogOut
-          </button>
-          
-        </li>
-          </> :
-        <>
-        <li className="list-none">
-          <Link to="/login" className="font-semibold mr-4 text-xm">
-            LOGIN
-          </Link>
-        </li>
-        </>
-      }
+          {user ? (
+            <>
+              <li className="list-none">
+                <button
+                  onClick={handleLogOut}
+                  className="font-semibold mr-4 text-xm"
+                >
+                  LogOut
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="list-none">
+                <Link to="/login" className="font-semibold mr-4 text-xm">
+                  LOGIN
+                </Link>
+              </li>
+            </>
+          )}
         </div>
-        {user? <>
-          <img
-          className="w-10 rounded-full"
-          src={user?.photoURL}
-          title={user?.displayName}
-        />
+        <button className="btn z-10 max-w-7xl border-0 bg-opacity-30 text-white bg-black hover:bg-opacity-30 hover:text-white hover:bg-black">
+        <FaCartShopping />
+          <div className="badge badge-secondary">+0</div>
+        </button>
         
-        </> : <>
-        <img
-          className="w-10 rounded-full"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rjtPJdLy1SOek-sBOvjP5S0-j6V69Ky6MA&usqp=CAU"
-        />
-        </>}
       </div>
     </div>
   );
