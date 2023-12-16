@@ -9,7 +9,7 @@ const FoodCard = ({ item }) => {
 
 const { name, image, price, recipe, _id } = item;
 const {user} = useContext(AuthContext);
-const [cart, refetch] = UseCart();
+const [cart, , refetch] = UseCart();
 const navigate = useNavigate();
 const location = useLocation()
 
