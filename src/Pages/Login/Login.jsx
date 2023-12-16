@@ -130,9 +130,9 @@ const Login = () => {
                     required
                   />
                 </div>
-                
+                {/* TODO:   MAKE DISABLE BUTTON EANABLE */}
                 <button
-                  disabled={disable}
+                  disabled={false}
                   className="btn bg-orange-300 hover:bg-orange-400 text-white input-bordered  w-full max-w-xs mt-3"
                 >
                   Login
