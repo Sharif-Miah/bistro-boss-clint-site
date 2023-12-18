@@ -1,15 +1,47 @@
 import React from "react";
 import UseCart from "../../Hooks/UseCart";
 import TitleSheard from "../../Component/TitleSheard";
+import { FaRegTrashCan } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
-  const [cart] = UseCart();
+  const [cart, refetch] = UseCart();
   const total = cart.reduce((item, sum) => {
     return (parseFloat(sum.price) + parseFloat(item)).toFixed(2);
   }, 0);
   console.log(cart);
+
+  const handleDelete = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/carts/${item._id}`, {
+          method: "DELETE"
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+                refetch()
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
+
   return (
-    <div>
+    <div className="w-full">
       <TitleSheard subHeading="My cart" heading="WANNA ADD MORE?" />
 
       <div className="w-full flex justify-between items-center">
@@ -59,7 +91,12 @@ const MyCart = () => {
                 <td>{item.name}</td>
                 <td>$ {item.price}</td>
                 <td>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button
+                    onClick={() => handleDelete(item)}
+                    className="btn btn-ghost bg-red-700 py-1 px-2 hover:bg-red-700 text-white"
+                  >
+                    <FaRegTrashCan className="text-xl" />
+                  </button>
                 </td>
               </tr>
             ))}

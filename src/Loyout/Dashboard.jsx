@@ -10,8 +10,12 @@ import { FaHome } from "react-icons/fa";
 import { TiThMenu } from "react-icons/ti";
 import { GiShoppingBag } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
+import UseCart from "../Hooks/UseCart";
 
 const Dashboard = () => {
+
+  const [cart] = UseCart();
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -51,7 +55,9 @@ const Dashboard = () => {
             <NavLink to='/paymenthistory'><GiWallet /> PAYMENT HISTORY</NavLink>
           </li>
           <li className="my-1">
-            <NavLink to='/dashboard/mycart'><BsCartFill /> MY CART</NavLink>
+            <NavLink to='/dashboard/mycart'><BsCartFill /> MY CART
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+            </NavLink>
           </li>
           <li className="my-1">
             <NavLink to='/addreview'><VscPreview /> ADD REVIEW</NavLink>
