@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthPorvider";
 import { FaCartShopping } from "react-icons/fa6";
 import UseCart from "../Hooks/UseCart";
 
+
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = UseCart();
@@ -18,11 +19,7 @@ const Navbar = () => {
           CONTACT US
         </Link>
       </li>
-      <li>
-        <Link to="/Deshbord" className="ml-5 font-semibold">
-          DASHBOARD
-        </Link>
-      </li>
+      
       <li>
         <Link to="/Ourmenu" className="ml-5 font-semibold">
           Our Menu
@@ -37,7 +34,7 @@ const Navbar = () => {
         <>
           <li>
             <Link to="/secret" className="ml-5 font-semibold">
-              secret
+              Secret
             </Link>
           </li>
         </>
@@ -82,7 +79,7 @@ const Navbar = () => {
         </div>
         <Link to="/">
           <a className=" normal-case text-2xl font-bold">BISTRO BOSS</a>
-          <p className="letter-spacing">Restaurant</p>
+          <p className="letter-spacing letter-space">Restaurant</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -113,11 +110,13 @@ const Navbar = () => {
             </>
           )}
         </div>
-        <button className="btn z-10 max-w-7xl border-0 bg-opacity-30 text-white bg-black hover:bg-opacity-30 hover:text-white hover:bg-black">
-        <FaCartShopping />
-          <div className="badge badge-secondary">+{cart?.length || 0}</div>
-        </button>
-        
+
+        <Link to="/dashboard/mycart">
+          <button className="btn z-10 max-w-7xl border-0 bg-opacity-30 text-white bg-black hover:bg-opacity-30 hover:text-white hover:bg-black">
+            <FaCartShopping />
+            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+          </button>
+        </Link>
       </div>
     </div>
   );

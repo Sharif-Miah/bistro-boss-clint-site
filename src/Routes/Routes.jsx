@@ -4,13 +4,14 @@ import {
 import Main from "../Loyout/Main";
 import Home from "../Pages/Home/Home/Home";
 import ContactUs from "../Pages/ContactUs/ContactUs";
-import Deshbord from "../Pages/Deshbord/Deshbord";
 import OurMenu from "../Pages/OurMenu/OurMenu";
 import OurShop from "../Pages/OurShop/OurShop";
 import SignIn from "../Pages/SignIn/SignIn";
 import Login from "../Pages/Login/Login";
 import Secret from "../Sheard/Secret/Secret";
 import PrivetRoutes from "./PrivetRoutes";
+import Dashboard from "../Loyout/Dashboard";
+import MyCart from "../Pages/MyCart/MyCart";
 
 
   export const router = createBrowserRouter([
@@ -25,10 +26,6 @@ import PrivetRoutes from "./PrivetRoutes";
         {
             path: '/contactus',
             element: <ContactUs/>
-        },
-        {
-            path: '/deshbord',
-            element: <Deshbord/>
         },
         {
             path: '/ourmenu',
@@ -52,4 +49,14 @@ import PrivetRoutes from "./PrivetRoutes";
         },
       ]
     },
+    {
+      path: 'dashboard',
+      element: <Dashboard/>,
+      children: [
+        {
+          path: 'mycart',
+          element: <MyCart/>
+        }
+      ]
+    }
   ]);

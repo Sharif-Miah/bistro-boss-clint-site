@@ -5,5 +5,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 9.12px;
+  
+}
+.letter-space{
+  letter-spacing: 8px;
 }
