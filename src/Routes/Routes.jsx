@@ -12,6 +12,7 @@ import Secret from "../Sheard/Secret/Secret";
 import PrivetRoutes from "./PrivetRoutes";
 import Dashboard from "../Loyout/Dashboard";
 import MyCart from "../Pages/MyCart/MyCart";
+import Allusers from "../Pages/Addminpage/Allusers/Allusers";
 
 
   export const router = createBrowserRouter([
@@ -56,7 +57,11 @@ import MyCart from "../Pages/MyCart/MyCart";
         {
           path: 'mycart',
           element: <MyCart/>
-        }
+        },
+        {
+          path: 'allusers',
+          element: <Allusers/>
+        },
       ]
     }
   ]);

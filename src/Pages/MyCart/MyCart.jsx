@@ -3,6 +3,7 @@ import UseCart from "../../Hooks/UseCart";
 import TitleSheard from "../../Component/TitleSheard";
 import { FaRegTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyCart = () => {
   const [cart, refetch] = UseCart();
@@ -42,6 +43,9 @@ const MyCart = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Bistro Boss || My Cart</title>
+      </Helmet>
       <TitleSheard subHeading="My cart" heading="WANNA ADD MORE?" />
 
       <div className="w-full flex justify-between items-center">
