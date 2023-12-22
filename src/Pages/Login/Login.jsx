@@ -4,7 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TfiLinkedin } from "react-icons/tfi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -15,7 +15,6 @@ import { AuthContext } from "../../Provider/AuthPorvider";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
-  
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,7 +25,7 @@ const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -39,25 +38,39 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
-
       Swal.fire({
-        title: "User Login Successfull.",
-        showClass: {
-          popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `
-        },
-        hideClass: {
-          popup: `
-            animate__animated
-            animate__fadeOutDown
-            animate__faster
-          `
-        }
+        position: "center",
+        icon: "success",
+        title: "Successfully Login.",
+        showConfirmButton: false,
+        timer: 1500,
       });
-      navigate(from, {replace: true})
+      navigate(from, { replace: true });
+    });
+  };
+
+  const handleSignWithGoogle = () => {
+    signInWithGoogle().then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+
+      const saveduser = {
+        name: loggedUser.displayName,
+        email: loggedUser.email,
+      };
+
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveduser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+          console.log('from', from)
+        });
     });
   };
 
@@ -143,7 +156,9 @@ const Login = () => {
               <p className=" text-sm mt-3">OR login with you</p>
             </div>
             <div className=" lg:flex  ml-16 lg:ml-24  mt-5">
-              <FcGoogle className="text-2xl text-sky-900 cursor-pointer" />
+              <button onClick={handleSignWithGoogle}>
+                <FcGoogle className="text-2xl text-sky-900 cursor-pointer" />
+              </button>
               <FaFacebookF className="text-2xl my-3 lg:my-0 lg:mx-9 text-sky-900 cursor-pointer" />
               <TfiLinkedin className="text-2xl text-indigo-700 cursor-pointer" />
             </div>

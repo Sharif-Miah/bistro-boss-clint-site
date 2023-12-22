@@ -12,7 +12,7 @@ const UseCart = email => {
         }
         
 })
-return [cart, isLoading, refetch ]
+return [cart, refetch ]
 }
 
 export default UseCart;

@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthPorvider";
 import { Helmet } from "react-helmet-async";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -23,46 +23,69 @@ const SignIn = () => {
     reset,
   } = useForm();
 
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } =
+    useContext(AuthContext);
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-    .then((result) => {
+    createUser(data.email, data.password).then((result) => {
       const user = result.user;
       console.log(user);
 
       updateUserProfile(data.name, data.photoURL)
-      .then(() => {
-        console.log("User Profile User Updated")
-        reset();
-        Swal.fire({
-          title: "User Signin Successfull.",
-          showClass: {
-            popup: `
-              animate__animated
-              animate__fadeInUp
-              animate__faster
-            `
-          },
-          hideClass: {
-            popup: `
-              animate__animated
-              animate__fadeOutDown
-              animate__faster
-            `
-          }
-        });
-        navigate(from, {replace: true})
-      })
-      .catch(error => console.log(error))
+        .then(() => {
+          console.log("User Profile User Updated");
 
-      
+          const saveduser = { name: data.name, email: data.email };
 
-      
-
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveduser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Successfully Sign In.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate(from, { replace: true });
+              }
+            });
+        })
+        .catch((error) => console.log(error));
     });
-    
+  };
+
+  const handleSignWithGoogle = () => {
+    signInWithGoogle().then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+
+      const saveduser = {
+        name: loggedUser.displayName,
+        email: loggedUser.email,
+      };
+
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveduser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
   };
 
   return (
@@ -102,7 +125,6 @@ const SignIn = () => {
                   <label className="font-semibold ml-3">Photo URL</label> <br />
                   <input
                     type="text"
-                    
                     {...register("photoURL", { required: true })}
                     placeholder="Photo URL"
                     className="input input-bordered input-md w-full max-w-xs mt-3"
@@ -115,7 +137,6 @@ const SignIn = () => {
                     )}
                   </p>
                 </div>
-
 
                 <div>
                   <label className="font-semibold ml-3">Email</label> <br />
@@ -190,7 +211,9 @@ const SignIn = () => {
               <p className=" text-sm mt-3">OR login with you</p>
             </div>
             <div className=" lg:flex  ml-16 lg:ml-24  mt-5">
-              <FcGoogle className="text-2xl text-sky-900 cursor-pointer" />
+              <button onClick={handleSignWithGoogle}>
+                <FcGoogle className="text-2xl text-sky-900 cursor-pointer" />
+              </button>
               <FaFacebookF className="text-2xl my-3 lg:my-0 lg:mx-9 text-sky-900 cursor-pointer" />
               <TfiLinkedin className="text-2xl text-indigo-700 cursor-pointer" />
             </div>
