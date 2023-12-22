@@ -13,12 +13,12 @@ import {
 import { app } from "../firebase/firebase.config";
 import { useEffect } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 export const AuthContext = createContext();
 export const auth = getAuth(app);
 
 const AuthPorvider = ({ children }) => {
-
   const googleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,16 +34,16 @@ const AuthPorvider = ({ children }) => {
   };
 
   const signInWithGoogle = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
-      displayName: name, photoURL: photo
-    })
-  }
-
+      displayName: name,
+      photoURL: photo,
+    });
+  };
 
   const logOut = () => {
     setLoading(true);
@@ -54,6 +54,18 @@ const AuthPorvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("Current User", currentUser);
+
+      if (currentUser) {
+        axios.post("http://localhost:5000/jwt", { email: currentUser.email })
+        .then(data => {
+          console.log(data.data);
+          localStorage.setItem('access-token', data.data)
+        })
+      }
+      else{
+        localStorage.removeItem('access-token')
+      }
+
       setLoading(false);
     });
     return () => {
@@ -68,7 +80,7 @@ const AuthPorvider = ({ children }) => {
     signIn,
     signInWithGoogle,
     logOut,
-    updateUserProfile
+    updateUserProfile,
   };
 
   return (
