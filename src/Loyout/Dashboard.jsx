@@ -12,12 +12,15 @@ import { TiThMenu } from "react-icons/ti";
 import { GiShoppingBag } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
 import UseCart from "../Hooks/UseCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = UseCart();
 
   // TODO: Admin to show in database in backend
-  const isAdmin = true;
+  // const isAdmin = true;
+
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="drawer lg:drawer-open">
