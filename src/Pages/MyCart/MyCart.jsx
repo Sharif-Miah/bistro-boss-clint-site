@@ -7,10 +7,10 @@ import { Helmet } from "react-helmet-async";
 
 const MyCart = () => {
   const [cart, refetch] = UseCart();
-  const total = cart.reduce((item, sum) => {
+  // TODO: Cart total taka added
+  const total = cart?.reduce((item, sum) => {
     return (parseFloat(sum.price) + parseFloat(item)).toFixed(2);
   }, 0);
-  console.log(cart);
 
   const handleDelete = (item) => {
     Swal.fire({

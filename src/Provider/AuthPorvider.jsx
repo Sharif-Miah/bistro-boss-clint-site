@@ -60,13 +60,14 @@ const AuthPorvider = ({ children }) => {
         .then(data => {
           console.log(data.data);
           localStorage.setItem('access-token', data.data)
+          setLoading(false);
         })
       }
       else{
         localStorage.removeItem('access-token')
       }
 
-      setLoading(false);
+      
     });
     return () => {
       return unsubscribe();
