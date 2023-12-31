@@ -3,7 +3,7 @@ import { FadeLoader } from 'react-spinners';
 import useAdmin from '../Hooks/useAdmin';
 import useAuth from '../Hooks/useAuth';
 
-const AdminRoutes = () => {
+const AdminRoutes = ({children}) => {
     const {user, loading} = useAuth();
     const location = useLocation();
     const [isAdmin, isAdminLoading] = useAdmin();
@@ -16,7 +16,7 @@ const AdminRoutes = () => {
         return children;
     }
 
-    return <Navigate to="/login" state={{from: location}} replace></Navigate>
+    return <Navigate to="/" state={{from: location}} replace></Navigate>
 };
 
 export default AdminRoutes;
