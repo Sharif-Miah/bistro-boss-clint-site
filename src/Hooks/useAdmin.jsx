@@ -1,4 +1,3 @@
-import React from "react";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiousSecure";
 import { useQuery } from "react-query";
@@ -12,7 +11,7 @@ const useAdmin = () => {
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/admin/${user?.email}`);
       console.log("is admin response", res);
-      return res.data;
+      return res.data.admin;
     },
   });
 

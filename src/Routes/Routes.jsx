@@ -13,6 +13,8 @@ import PrivetRoutes from "./PrivetRoutes";
 import Dashboard from "../Loyout/Dashboard";
 import MyCart from "../Pages/MyCart/MyCart";
 import Allusers from "../Pages/Addminpage/Allusers/Allusers";
+import AddItem from "../Pages/AddItem/AddItem";
+import AdminRoutes from "./AdminRoutes";
 
 
   export const router = createBrowserRouter([
@@ -61,6 +63,10 @@ import Allusers from "../Pages/Addminpage/Allusers/Allusers";
         {
           path: 'allusers',
           element: <Allusers/>
+        },
+        {
+          path: 'additem',
+          element: <AdminRoutes><AddItem/></AdminRoutes>
         },
       ]
     }

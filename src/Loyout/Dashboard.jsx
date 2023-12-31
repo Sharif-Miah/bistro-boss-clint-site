@@ -13,6 +13,7 @@ import { GiShoppingBag } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
 import UseCart from "../Hooks/UseCart";
 import useAdmin from "../Hooks/useAdmin";
+// import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = UseCart();
@@ -63,7 +64,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li className="my-1">
-                <NavLink to="/dashboard/additems">
+                <NavLink to="/dashboard/additem">
                 <FaUtensils /> ADD ITEMS
                 </NavLink>
               </li>

@@ -3,11 +3,13 @@ import { useQuery } from "react-query";
 import TitleSheard from "../../../Component/TitleSheard";
 import { FaRegTrashCan, FaUserShield } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiousSecure";
 
 const Allusers = () => {
+  const [axiosSecure] = useAxiosSecure();
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axiosSecure.get("/users");
+    return res.data;
   });
 
   const handleUpdateRole = (user) => {
@@ -83,7 +85,7 @@ const Allusers = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr>
+              <tr key={user._id}>
                 <td>{index + 1}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
